@@ -21,6 +21,17 @@ documents = [
     "All silver items come with a 1-year warranty against tarnishing.",
 ]
 
+metadatas=[
+    {"category": "policy"},
+    {"category": "support"},
+    {"category": "product"},
+    {"category": "shipping"},
+    {"category": "support"},
+    {"category": "product"},
+    {"category": "product"},
+    {"category": "product"},
+]
+
 # ─────────────────────────────────────────────
 # STEP 2: LOAD EMBEDDING MODEL
 # This model converts text → numbers (vectors)
@@ -43,6 +54,7 @@ embeddings = embedder.encode(documents).tolist()
 collection.add(
     documents=documents,
     embeddings=embeddings,
+    metadatas=metadatas,
     ids=[f"doc_{i}" for i in range(len(documents))]
 )
 
@@ -52,7 +64,7 @@ print(f"Stored {len(documents)} documents in vector DB\n")
 # STEP 4: THE RAG FUNCTION
 # This is the full pipeline in one function
 # ─────────────────────────────────────────────
-def rag_query(user_question: str, top_k: int = 2) -> str:
+def rag_query(user_question: str, top_k: int = 3) -> str:
     
     # A. Embed the user's question into a vector
     query_vector = embedder.encode([user_question]).tolist()
@@ -61,16 +73,18 @@ def rag_query(user_question: str, top_k: int = 2) -> str:
     results = collection.query(
         query_embeddings=query_vector,
         n_results=top_k
+
     )
     
     retrieved_chunks = results["documents"][0]
+    metadatas=results["metadatas"][0]
     distances = results["distances"][0]
     
     # Print what was retrieved (important for debugging in interviews)
     print(f"Question: {user_question}")
     print("Retrieved context:")
-    for chunk, score in zip(retrieved_chunks, distances):
-        print(f"  [score: {score:.4f}] {chunk}")
+    for chunk,meta,score in zip(retrieved_chunks,metadatas, distances):
+        print(f"  [score: {score:.4f}][{meta['category']}] {chunk}")
     
     # C. Build the augmented prompt
     # This is the "augmentation" step — injecting context into prompt
