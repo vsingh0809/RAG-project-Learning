@@ -1,0 +1,98 @@
+import json
+import os
+from groq import Groq
+from dotenv import load_dotenv
+
+load_dotenv()
+
+client = Groq(api_key=os.getenv("GROQ_API_KEY"))
+
+tools=[
+    {
+        "type":"function",
+        "function":{
+            "name":"calculate",
+            "description":"perform basic airthmetic:add,substract,multiply,divide",
+            "parameters":
+            {
+                "type":"object",
+                "properties":
+                {
+                    "operation":{
+                        "type":"string",
+                        "enum": ["add", "subtract", "multiply", "divide"],
+                         "description": "The arithmetic operation to perform"
+                    },
+                    "a":{
+                        "type":"number",
+                        "description":"first number"
+                    },
+                    "b":{
+                         "type": "number",
+                        "description": "Second number"
+                    }
+                },
+                "required":["operation","a","b"]
+            }
+        }
+    }
+]
+
+def calculate(operation:str,a:float,b:float)->str:
+    if operation == "add":      return a + b
+    if operation == "subtract": return a - b
+    if operation == "multiply": return a * b
+    if operation == "divide":
+        if b == 0:
+            raise ValueError("Cannot divide by zero")
+        return a / b
+
+user_message = "What is 100 divided by 4 ?"
+print(f"User: {user_message}\n")
+
+response = client.chat.completions.create(
+    model="llama-3.3-70b-versatile",
+    messages=[{"role": "user", "content": user_message}],
+    tools=tools,
+    tool_choice='auto'
+    )
+
+message=response.choices[0].message
+print("=== RAW LLM RESPONSE ===")
+print(f"Content: {message.content}")
+print(f"Tool calls: {message.tool_calls}") 
+print()
+
+if message.tool_calls:
+    tool_call=message.tool_calls[0]
+
+ # The LLM gives you the args as a JSON string — parse it
+
+    args=json.loads(tool_call.function.arguments)
+    print(f"=== LLM WANTS TO CALL ===")
+    print(f"Function: {tool_call.function.name}")
+    print(f"Arguments: {args}")
+    print()
+
+    # YOU run the actual function
+
+    result=calculate(**args)
+    print(f"=== YOUR CODE EXECUTED ===")
+    print(f"Result: {result}")
+    print()
+
+    final_response=client.chat.completions.create(
+        model="llama-3.3-70b-versatile",
+        messages=[{"role":"user","content":user_message}
+                  ,message,
+                  {"role":"tool","tool_call_id":tool_call.id,"content":str(result)}],
+                  tools=tools
+    )
+
+print(f"=== FINAL LLM ANSWER ===")    
+print(final_response.choices[0].message.content)
+
+
+ 
+
+
