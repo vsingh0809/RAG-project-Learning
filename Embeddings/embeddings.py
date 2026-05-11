@@ -4,19 +4,19 @@ import numpy as np
 import os
 
 load_dotenv()
-client=openai.OpenAI(api_key=os.getenv("OPEN_API_KEY"))
+client=openai.OpenAI(base_url="http://localhost:11434/v1",api_key="ollama")
 
 #-------------Step 1 Get first embeddings---------
 text = "LangGraph is a framework for building stateful agents"
 
 response=client.embeddings.create(
-    model="text-embedding-3-small",
+    model="mxbai-embed-large",
     input=text
 )
 
 embedding=response.data[0].embedding
 print(f"Text: {text}")
-print(f"Embedding dimensions: {len(embedding)}")       # 1536
+print(f"Embedding dimensions: {len(embedding)}")       # 768 
 print(f"First 5 numbers: {embedding[:5]}")
 print(f"Type: {type(embedding[0])}")                   # float
 print()
@@ -44,7 +44,7 @@ texts = [
 
 print("Embedding all texts...")
 response2=client.embeddings.create(
-    model="text-embedding-3-small",
+    model="mxbai-embed-large",
     input=texts
 )
 
@@ -81,16 +81,16 @@ def semantic_search(query:str,documents:list[str],top_k:int=2)->list[tuple[float
     # Embed query + all documents in one call
     all_texts=[query]+documents
     response = client.embeddings.create(
-        model="text-embedding-3-small",
+        model="mxbai-embed-large",
         input=all_texts
     )
 
-    embeddings=[item.embedding for item in response]
+    embeddings=[item.embedding for item in response.data]
     query_emb=embeddings[0]
     doc_embs = embeddings[1:]
 
     scored=[
-        (cosine_similarity(query_emb,doc_embs),doc)
+        (cosine_similarity(query_emb,doc_emb),doc)
         for doc_emb,doc in zip(doc_embs,documents)
     ]
 
@@ -107,7 +107,7 @@ documents = [
 ]
 
 query = "How do AI agents work together?"
-results = semantic_search(query, documents, top_k=3)
+results = semantic_search(query, documents, top_k=7)
 
 print(f"\n\nSemantic search for: '{query}'")
 print("Top 3 results:")
