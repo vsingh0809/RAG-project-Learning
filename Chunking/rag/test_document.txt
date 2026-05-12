@@ -1,0 +1,31 @@
+
+Introduction to Vector Databases
+
+Vector databases are specialized database systems designed to store and
+query high-dimensional vectors efficiently. They are the backbone of
+modern RAG (Retrieval Augmented Generation) systems.
+
+How Vector Databases Work
+
+When you store a document in a vector database, the text is first
+converted to a numerical vector using an embedding model. This vector
+captures the semantic meaning of the text. The database stores both
+the original text and its vector representation.
+
+When querying, the search term is also converted to a vector.
+The database then finds stored vectors that are mathematically
+closest to the query vector using metrics like cosine similarity.
+
+Popular Vector Databases
+
+Qdrant is an open-source vector database written in Rust. It offers
+high performance and rich filtering capabilities. Qdrant supports
+payload (metadata) filtering alongside vector search.
+
+ChromaDB is a simple, open-source vector database popular for
+prototyping and small-scale RAG applications. It runs in-memory
+or persisted to disk with no external dependencies.
+
+Pinecone is a managed cloud vector database. It handles scaling
+automatically but requires a paid account for production use.
+    
