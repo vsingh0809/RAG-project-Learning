@@ -53,15 +53,15 @@ documents=[
 PERSIST_DIR="./chroma_db"
 
 # Delete old data before creating fresh
-# if os.path.exists(PERSIST_DIR):
-#     shutil.rmtree(PERSIST_DIR)
-#     print("Cleared old ChromaDB data")
+if os.path.exists(PERSIST_DIR):
+    shutil.rmtree(PERSIST_DIR)
+    print("Cleared old ChromaDB data")
 
 # from_documents: chunks + embeds + stores in one call
 vector_store=Chroma.from_documents(
     documents=documents,
     embedding=embeddings,
-    #persist_directory=PERSIST_DIR,
+    persist_directory=PERSIST_DIR,
     collection_name="ai_knowledge_base"
 )
 
@@ -137,7 +137,7 @@ print("LOADING EXISTING CHROMADB (no re-embedding)")
 print("=" * 60)
 
 loaded_store=Chroma(
-   # persist_directory=PERSIST_DIR,
+    persist_directory=PERSIST_DIR,
     embedding_function=embeddings,
     collection_name="ai_knowledge_base"
 )
