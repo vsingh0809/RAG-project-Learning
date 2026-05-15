@@ -170,3 +170,4 @@ print("All chunks with sizes:")
 for i, chunk in enumerate(chunks):
     print(f"  Chunk {i}: {len(chunk.page_content)} chars | "
           f"'{chunk.page_content[:80].strip()}...'")
+    

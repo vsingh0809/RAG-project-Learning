@@ -3,7 +3,6 @@ from langchain_core.output_parsers import StrOutputParser
 from langchain_core.documents import Document
 from langchain_core.runnables import RunnablePassthrough
 from langchain_core.prompts import ChatPromptTemplate
-from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain_chroma import Chroma
 
 # ── Setup: embeddings + LLM ───────────────────────────────
@@ -11,7 +10,7 @@ embeddings=OllamaEmbeddings(
     model="mxbai-embed-large"
 )
 
-# Use Gemini as LLM — free tier
+# Use llama as LLM — free tier
 llm = ChatOllama(
     model="llama3.1",
     temperature=0
@@ -176,6 +175,8 @@ conv_rag_chain=(
      |llm
      |StrOutputParser()
 )
+
+
 
 #Simulate multiturn conversation
 chat_history=[]
