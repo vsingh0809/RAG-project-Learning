@@ -92,5 +92,53 @@ print(f"  Context Recall:   {scores['context_recall'].mean():.4f}")
 print(f"\nPer-question breakdown:")
 print("-" * 60)
 
+for i ,row in scores.iterrows():
+    q=eval_results[i]["question"][:50]
+    print(f"Q{i+1}:{q}...")
+    print(f"  Faith: {row['faithfulness']:.2f} | "
+          f"Rel: {row['answer_relevancy']:.2f} | "
+          f"Prec: {row['context_precision']:.2f} | "
+          f"Rec: {row['context_recall']:.2f}")
+    
+# ── Identify weakest metric ───────────────────────────────
+print("\n" + "=" * 60)
+print("DIAGNOSIS")
+print("=" * 60)    
+
+avg_score={
+    "faithfulness":scores['faithfulness'].mean(),
+    "answer_relevancy": scores['answer_relevancy'].mean(),
+    "context_precision": scores['context_precision'].mean(),
+    "context_recall": scores['context_recall'].mean(),
+}
+
+weakest=min(avg_score,key=avg_score.get)
+print(f"Weakest metric: {weakest} ({avg_score[weakest]:.4f})")
+
+diagnosis = {
+    "faithfulness": "LLM is hallucinating — answers not grounded in context. Fix: make RAG prompt stricter. Add 'ONLY use the context provided.'",
+    "answer_relevancy": "Answers are off-topic or incomplete. Fix: improve prompt to be more direct. Check if retrieval is returning wrong docs.",
+    "context_precision": "Wrong chunks being retrieved. Fix: try smaller chunk size, better metadata filtering, or hybrid search.",
+    "context_recall": "Missing relevant chunks. Fix: increase k (retrieve more docs), or check if relevant docs are even in your vector store."
+}
+
+print(f"What it means: {diagnosis[weakest]}")
+
+#save score to file
+final_score={
+    "faithfulness":float(avg_score["faithfulness"]),
+    "answer_relevancy": float(avg_score["answer_relevancy"]),
+    "context_precision": float(avg_score["context_precision"]),
+    "context_recall": float(avg_score["context_recall"]),
+    "weakest_metric": weakest
+}
+
+with open("./ragas_scores.json", "w") as f:
+    json.dump(final_score, f, indent=2)
+
+print(f"\nScores saved to rag/ragas_scores.json")
+print("Add these numbers to your GitHub README — this is your proof of work")    
+
+
 
 
