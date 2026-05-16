@@ -1,7 +1,4 @@
 import json
-from openai import OpenAI
-from ragas.llms import llm_factory
-from ragas.embeddings import embedding_factory
 from ragas import evaluate,EvaluationDataset
 from ragas.dataset_schema import SingleTurnSample
 from ragas.metrics._faithfulness import Faithfulness
@@ -11,6 +8,7 @@ from ragas.metrics._context_recall import ContextRecall
 from langchain_ollama import ChatOllama, OllamaEmbeddings
 from ragas.llms import LangchainLLMWrapper
 from ragas.embeddings import LangchainEmbeddingsWrapper
+from ragas.run_config import RunConfig
 
 # ── Load eval results from previous step ─────────────────
 with open("eval_results.json", "r") as f:
@@ -65,6 +63,10 @@ answer_relevancy    = AnswerRelevancy(llm=ragas_llm, embeddings=ragas_embeddings
 context_precision   = ContextPrecision(llm=ragas_llm)
 context_recall      = ContextRecall(llm=ragas_llm)
 
+# Setting max_workers to 1 or 2 to stop overwhelming Ollama
+# You can also explicitly increase the RAGAS timeout here
+custom_config = RunConfig(max_workers=2, timeout=180)
+
 results=evaluate(
     dataset=dataset,
     metrics=[
@@ -72,7 +74,8 @@ results=evaluate(
         answer_relevancy,
         context_precision,
         context_recall,
-    ]
+    ],
+    run_config=custom_config
 )
 
 # ── Display scores ────────────────────────────────────────

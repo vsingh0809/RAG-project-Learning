@@ -6,8 +6,7 @@
     "contexts": [
       "LangGraph is a library for building stateful multi-actor applications. It uses a state machine where nodes are functions and edges control flow between them.",
       "Prompt engineering involves designing inputs to LLMs to get better outputs. Techniques include chain-of-thought, few-shot examples, and ReAct patterns.",
-      "Function calling allows LLMs to request execution of predefined functions. The LLM returns structured JSON with function name and arguments. Your code runs the function.",
-      "FastAPI is a modern Python web framework for building APIs. It uses async/await and Pydantic for validation. Perfect for wrapping AI systems."
+      "Function calling allows LLMs to request execution of predefined functions. The LLM returns structured JSON with function name and arguments. Your code runs the function."
     ]
   },
   {
@@ -17,30 +16,27 @@
     "contexts": [
       "RAG stands for Retrieval Augmented Generation. It retrieves relevant documents from a vector store and uses them as context for the LLM to generate grounded answers.",
       "RAGAS is a framework for evaluating RAG pipelines. It measures faithfulness, answer relevancy, context precision, and context recall using LLM-as-judge.",
-      "Qdrant is a vector database written in Rust. It offers high performance similarity search with rich filtering on payload metadata. Good for production RAG systems.",
-      "ChromaDB is an open-source vector database. It stores embeddings and allows fast similarity search. It can run in-memory or persist to disk."
+      "Qdrant is a vector database written in Rust. It offers high performance similarity search with rich filtering on payload metadata. Good for production RAG systems."
     ]
   },
   {
     "question": "What is ChromaDB and how can it run?",
     "ground_truth": "ChromaDB is an open-source vector database that stores embeddings and allows fast similarity search. It can run in-memory or persist to disk.",
-    "answer": "ChromaDB is an open-source vector database. It stores embeddings and allows fast similarity search. It can run in-memory or persist to disk.",
+    "answer": "ChromaDB is an open-source vector database that stores embeddings and allows fast similarity search. It can run in-memory or persist to disk.",
     "contexts": [
       "ChromaDB is an open-source vector database. It stores embeddings and allows fast similarity search. It can run in-memory or persist to disk.",
       "LangGraph is a library for building stateful multi-actor applications. It uses a state machine where nodes are functions and edges control flow between them.",
-      "Qdrant is a vector database written in Rust. It offers high performance similarity search with rich filtering on payload metadata. Good for production RAG systems.",
-      "Function calling allows LLMs to request execution of predefined functions. The LLM returns structured JSON with function name and arguments. Your code runs the function."
+      "Qdrant is a vector database written in Rust. It offers high performance similarity search with rich filtering on payload metadata. Good for production RAG systems."
     ]
   },
   {
     "question": "What is CrewAI used for?",
     "ground_truth": "CrewAI is a framework for orchestrating role-playing autonomous AI agents. Agents have roles, goals, and backstories and work together to complete complex tasks.",
-    "answer": "Orchestrating role-playing autonomous AI agents to complete complex tasks.",
+    "answer": "CrewAI is a framework for orchestrating role-playing autonomous AI agents. Agents have roles, goals, and backstories. They work together to complete complex tasks.",
     "contexts": [
       "CrewAI is a framework for orchestrating role-playing autonomous AI agents. Agents have roles, goals, and backstories. They work together to complete complex tasks.",
       "FastAPI is a modern Python web framework for building APIs. It uses async/await and Pydantic for validation. Perfect for wrapping AI systems.",
-      "Prompt engineering involves designing inputs to LLMs to get better outputs. Techniques include chain-of-thought, few-shot examples, and ReAct patterns.",
-      "Qdrant is a vector database written in Rust. It offers high performance similarity search with rich filtering on payload metadata. Good for production RAG systems."
+      "Prompt engineering involves designing inputs to LLMs to get better outputs. Techniques include chain-of-thought, few-shot examples, and ReAct patterns."
     ]
   },
   {
@@ -50,8 +46,7 @@
     "contexts": [
       "Qdrant is a vector database written in Rust. It offers high performance similarity search with rich filtering on payload metadata. Good for production RAG systems.",
       "LangGraph is a library for building stateful multi-actor applications. It uses a state machine where nodes are functions and edges control flow between them.",
-      "FastAPI is a modern Python web framework for building APIs. It uses async/await and Pydantic for validation. Perfect for wrapping AI systems.",
-      "Function calling allows LLMs to request execution of predefined functions. The LLM returns structured JSON with function name and arguments. Your code runs the function."
+      "FastAPI is a modern Python web framework for building APIs. It uses async/await and Pydantic for validation. Perfect for wrapping AI systems."
     ]
   },
   {
@@ -61,8 +56,7 @@
     "contexts": [
       "RAGAS is a framework for evaluating RAG pipelines. It measures faithfulness, answer relevancy, context precision, and context recall using LLM-as-judge.",
       "RAG stands for Retrieval Augmented Generation. It retrieves relevant documents from a vector store and uses them as context for the LLM to generate grounded answers.",
-      "ChromaDB is an open-source vector database. It stores embeddings and allows fast similarity search. It can run in-memory or persist to disk.",
-      "Qdrant is a vector database written in Rust. It offers high performance similarity search with rich filtering on payload metadata. Good for production RAG systems."
+      "ChromaDB is an open-source vector database. It stores embeddings and allows fast similarity search. It can run in-memory or persist to disk."
     ]
   },
   {
@@ -72,30 +66,27 @@
     "contexts": [
       "Prompt engineering involves designing inputs to LLMs to get better outputs. Techniques include chain-of-thought, few-shot examples, and ReAct patterns.",
       "FastAPI is a modern Python web framework for building APIs. It uses async/await and Pydantic for validation. Perfect for wrapping AI systems.",
-      "CrewAI is a framework for orchestrating role-playing autonomous AI agents. Agents have roles, goals, and backstories. They work together to complete complex tasks.",
-      "Function calling allows LLMs to request execution of predefined functions. The LLM returns structured JSON with function name and arguments. Your code runs the function."
+      "CrewAI is a framework for orchestrating role-playing autonomous AI agents. Agents have roles, goals, and backstories. They work together to complete complex tasks."
     ]
   },
   {
     "question": "How does function calling work with LLMs?",
     "ground_truth": "Function calling allows LLMs to request execution of predefined functions. The LLM returns structured JSON with the function name and arguments, and your code runs the function.",
-    "answer": "Function calling allows LLMs to request execution of predefined functions. The LLM returns structured JSON with function name and arguments. Your code runs the function.",
+    "answer": "Function calling allows LLMs to request execution of predefined functions. The LLM returns structured JSON with function name and arguments, which your code then runs.",
     "contexts": [
       "Function calling allows LLMs to request execution of predefined functions. The LLM returns structured JSON with function name and arguments. Your code runs the function.",
       "Prompt engineering involves designing inputs to LLMs to get better outputs. Techniques include chain-of-thought, few-shot examples, and ReAct patterns.",
-      "LangGraph is a library for building stateful multi-actor applications. It uses a state machine where nodes are functions and edges control flow between them.",
-      "RAGAS is a framework for evaluating RAG pipelines. It measures faithfulness, answer relevancy, context precision, and context recall using LLM-as-judge."
+      "LangGraph is a library for building stateful multi-actor applications. It uses a state machine where nodes are functions and edges control flow between them."
     ]
   },
   {
     "question": "Which vector database is good for production RAG systems?",
     "ground_truth": "Qdrant is good for production RAG systems as it offers high performance similarity search with rich filtering on payload metadata.",
-    "answer": "Qdrant. According to the context, Qdrant is \"Good for production RAG systems.\"",
+    "answer": "Qdrant is good for production RAG systems.",
     "contexts": [
       "Qdrant is a vector database written in Rust. It offers high performance similarity search with rich filtering on payload metadata. Good for production RAG systems.",
       "RAG stands for Retrieval Augmented Generation. It retrieves relevant documents from a vector store and uses them as context for the LLM to generate grounded answers.",
-      "ChromaDB is an open-source vector database. It stores embeddings and allows fast similarity search. It can run in-memory or persist to disk.",
-      "RAGAS is a framework for evaluating RAG pipelines. It measures faithfulness, answer relevancy, context precision, and context recall using LLM-as-judge."
+      "ChromaDB is an open-source vector database. It stores embeddings and allows fast similarity search. It can run in-memory or persist to disk."
     ]
   },
   {
@@ -105,8 +96,7 @@
     "contexts": [
       "LangGraph is a library for building stateful multi-actor applications. It uses a state machine where nodes are functions and edges control flow between them.",
       "ChromaDB is an open-source vector database. It stores embeddings and allows fast similarity search. It can run in-memory or persist to disk.",
-      "Function calling allows LLMs to request execution of predefined functions. The LLM returns structured JSON with function name and arguments. Your code runs the function.",
-      "CrewAI is a framework for orchestrating role-playing autonomous AI agents. Agents have roles, goals, and backstories. They work together to complete complex tasks."
+      "Function calling allows LLMs to request execution of predefined functions. The LLM returns structured JSON with function name and arguments. Your code runs the function."
     ]
   }
 ]

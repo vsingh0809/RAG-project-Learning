@@ -1,0 +1,67 @@
+{
+  "avg_faithfulness": 1.0,
+  "avg_relevancy": 1.0,
+  "avg_correctness": 0.8699999999999999,
+  "per_question": [
+    {
+      "faithfulness": 1.0,
+      "relevancy": 1.0,
+      "correctness": 1.0,
+      "reasoning": ""
+    },
+    {
+      "faithfulness": 1.0,
+      "relevancy": 1.0,
+      "correctness": 0.9,
+      "reasoning": ""
+    },
+    {
+      "faithfulness": 1.0,
+      "relevancy": 1.0,
+      "correctness": 1.0,
+      "reasoning": ""
+    },
+    {
+      "faithfulness": 1.0,
+      "relevancy": 1.0,
+      "correctness": 0.5,
+      "reasoning": ""
+    },
+    {
+      "faithfulness": 1.0,
+      "relevancy": 1.0,
+      "correctness": 1.0,
+      "reasoning": ""
+    },
+    {
+      "faithfulness": 1.0,
+      "relevancy": 1.0,
+      "correctness": 0.5,
+      "reasoning": ""
+    },
+    {
+      "faithfulness": 1.0,
+      "relevancy": 1.0,
+      "correctness": 1.0,
+      "reasoning": ""
+    },
+    {
+      "faithfulness": 1.0,
+      "relevancy": 1.0,
+      "correctness": 0.8,
+      "reasoning": ""
+    },
+    {
+      "faithfulness": 1.0,
+      "relevancy": 1.0,
+      "correctness": 1.0,
+      "reasoning": ""
+    },
+    {
+      "faithfulness": 1.0,
+      "relevancy": 1.0,
+      "correctness": 1.0,
+      "reasoning": ""
+    }
+  ]
+}
